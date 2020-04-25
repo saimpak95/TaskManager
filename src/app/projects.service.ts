@@ -12,7 +12,10 @@ export class ProjectsService {
   constructor(private httpClient: HttpClient) { }
 
 getAllProjects(): Observable<Projects[]>{
- return this.httpClient.get<Projects[]>('/api/Projects');
+ return this.httpClient.get<Projects[]>('http://localhost:59912/api/Projects');
 }
 
+insertProject(newProject: Projects): Observable<Projects>{
+  return this.httpClient.post<Projects>('http://localhost:59912/api/Projects', newProject);
+}
 }
