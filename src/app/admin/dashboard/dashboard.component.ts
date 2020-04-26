@@ -55,7 +55,6 @@ export class DashboardComponent implements OnInit {
   onProjecrChange($event){
     if ($event.target.innerHTML === 'Project A'){
       this.ProjectCost = 100;
-      console.log($event.target.innerHTML);
     }
     else if ($event.target.innerHTML === 'Project B'){
       this.ProjectCost = 200;

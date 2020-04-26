@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from '../../projects.service';
 import { Projects } from 'src/app/projects';
-import { error } from 'protractor';
+
 
 
 @Component({
@@ -14,7 +14,11 @@ export class ProjectsComponent implements OnInit {
   projects: Projects[];
   newProject: Projects = new Projects() ;
   EditProject: Projects = new  Projects();
+  DeleteProject: Projects = new  Projects();
+
   editIndex: number = null;
+  deleteIndex: number = null;
+
   constructor(private projectService: ProjectsService) { }
 
   ngOnInit(): void {
@@ -60,6 +64,26 @@ export class ProjectsComponent implements OnInit {
        this.EditProject.teamSize = 0;
 
 
+    });
+  }
+  onDeleteClick(event, index: number){
+    this.DeleteProject.projectID = this.projects[index].projectID;
+    this.DeleteProject.projectName = this.projects[index].projectName;
+    this.DeleteProject.dateOfStart = this.projects[index].dateOfStart;
+    this.DeleteProject.teamSize = this.projects[index].teamSize;
+    this.deleteIndex = index;
+  }
+
+  onDeleteConfirmClick(){
+    this.projectService.DeleteProject(this.DeleteProject.projectID).subscribe((response) => {
+      this.projects.splice(this.deleteIndex, 1);
+       // Clearing the Modal
+      this.DeleteProject.projectID = 0;
+      this.DeleteProject.projectName = null;
+      this.DeleteProject.dateOfStart = null;
+      this.DeleteProject.teamSize = 0;
+    }, (error) => {
+      console.log(error);
     });
   }
 }
