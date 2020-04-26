@@ -1,9 +1,24 @@
 <p>Projects</p>
-
-
-
 <div class="row">
   <div class="col-8 mx-auto">
+    <div class="form-group form-row">
+      <div class="col-6">
+      <label>Search by</label>
+      <select class="form-control" name="SearchBy" [(ngModel)]="searchBy">
+        <option value="ProjectName">Project Name</option>
+        <option value="DateOfStart">Date of start</option>
+        <option value="TeamSize">Team Size</option>
+      </select>
+      </div>
+      <div class="col-6">
+        <label>Search text</label>
+        <input type="text" class="form-control" name="SearchText" [(ngModel)]="searchText" />
+        <div class="input-group-append" (click)="onSearchClick()">
+          <span class="input-group-text"><i class="fa fa-search"></i></span>
+        </div>
+      </div>
+
+    </div>
     <button type="button" class="btn"  style="background-color: teal; color: white;" data-toggle="modal" data-target="#exampleModal">
       New Project
     </button> <!--Modal toggler button for INSERT-->

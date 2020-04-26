@@ -26,4 +26,9 @@ updateProject(existingProject: Projects): Observable<Projects>{
 DeleteProject(ProjectID: number): Observable<string>{
   return this.httpClient.delete<string>('http://localhost:59912/api/Project?ProjectID=' + ProjectID);
 }
+
+
+SearchProject(SearchBy: string, SearchText: string): Observable<Projects[]>{
+ return this.httpClient.get<Projects[]>('http://localhost:59912/api/Project/Search/' + SearchBy + '/' + SearchText, {responseType: 'json'});
+}
 }
